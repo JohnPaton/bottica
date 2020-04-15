@@ -7,7 +7,11 @@ from ua_parser import user_agent_parser
 from bottica.verifiers import fcrdns_hosts, ip_list, ip_ranges, cidr_list
 
 
-def _load_uap_extras(yaml_path=Path(__file__).parent / "uap_extras.yaml"):
+_uap_extras_yaml_path = Path(__file__).parent / "uap_extras.yaml"
+_bottica_yaml_path = Path(__file__).parent / "bottica.yaml"
+
+
+def _load_uap_extras(yaml_path=_uap_extras_yaml_path):
     """
     Load the UAP extras yaml and add the extra parsers to ua_parser
 
@@ -17,7 +21,9 @@ def _load_uap_extras(yaml_path=Path(__file__).parent / "uap_extras.yaml"):
     with open(yaml_path, "r") as h:
         uap_extras = yaml.load(h, Loader=yaml.SafeLoader)
 
-    for entry in uap_extras["user_agent_parsers"]:
+    # Each new entry added to front of list, so add them in
+    # reversed order to maintain precedence from file
+    for entry in reversed(uap_extras["user_agent_parsers"]):
         user_agent_parser.USER_AGENT_PARSERS.insert(
             0,
             user_agent_parser.UserAgentParser(
@@ -32,9 +38,7 @@ _load_uap_extras()
 
 class Bottica:
     def __init__(
-        self,
-        yaml_path: Union[Path, str] = Path(__file__).parent / "bottica.yaml",
-        max_tries: int = 3,
+        self, yaml_path: Union[Path, str, None] = _bottica_yaml_path, max_tries: int = 3
     ):
         """
         Verify that bots are really who they say they are.
