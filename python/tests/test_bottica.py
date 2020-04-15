@@ -5,8 +5,8 @@ from ua_parser import user_agent_parser
 from bottica import bottica
 
 
-def test_load_uap_extras(uap_extras_yaml, tmpdir, monkeypatch):
-    monkeypatch.setattr(user_agent_parser, "USER_AGENT_PARSERS", [])
+def test_load_uap_extras(uap_extras_yaml, tmpdir, mocker):
+    mocker.patch("ua_parser.user_agent_parser.USER_AGENT_PARSERS", [])
 
     with open(f"{tmpdir}/uap_extras.yaml", "w") as h:
         yaml.dump(uap_extras_yaml, h, Dumper=yaml.SafeDumper)
@@ -43,3 +43,19 @@ class TestBottica:
     def test_parse_uap_extras(self, ua, expected):
         b = bottica.Bottica(yaml_path=None)
         assert b.parse_ua(ua) == expected
+
+    @pytest.mark.parametrize(
+        "verifier", ["fcrdns_hosts", "ip_list", "ip_ranges", "cidr_list"]
+    )
+    def test_verify_calls_right_verifier(self, verifier, mocker):
+        b = bottica.Bottica()
+        mock = mocker.patch(f"bottica.verifiers.{verifier}")
+
+        b.verify("1.2.3.4", verifier, [])
+
+        assert mock.called_once()
+
+    def test_unknown_verifier_raises(self):
+        b = bottica.Bottica()
+        with pytest.raises(ValueError):
+            b.verify("1.2.3.4", "does not exist", [])
