@@ -13,6 +13,6 @@ user_agent_parsers:
   - regex: DuckDuck(Go|Bot)
     family_replacement: DuckDuckBot
 
-  # YandexBot (no family_replacement in uap-core)
+  # Yandexbot (no family_replacement in uap-core)
   - regex: Yandex\w{1,30}
-    family_replacement: YandexBot
+    family_replacement: Yandexbot

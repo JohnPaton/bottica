@@ -69,7 +69,7 @@ class BotEntry(BaseModel):
             "A list of hosts that the bot's IP may match in a "
             "Forward confirmed reverse DNS (FCrDNS) query. If this key"
             "is present but the list is empty, any host will be "
-            "allowed, but FCrDNS verification will still be performed."
+            "allowed, but FCrDNS verification will still be performed. "
             "Items must be unique."
         ),
         example=["google.com", "googlebot.com"],

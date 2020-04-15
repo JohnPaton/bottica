@@ -16,7 +16,8 @@ definitions:
       All IPs may be either IPv4 or IPv6.'
     properties:
       cidr_list:
-        description: A list of CIDR IP blocks that the bot may use
+        description: A list of CIDR IP blocks that the bot may use. Items must be
+          unique.
         example:
         - 8.8.8.0/24
         items:
@@ -29,6 +30,7 @@ definitions:
         description: A list of hosts that the bot's IP may match in a Forward confirmed
           reverse DNS (FCrDNS) query. If this keyis present but the list is empty,
           any host will be allowed, but FCrDNS verification will still be performed.
+          Items must be unique.
         example:
         - google.com
         - googlebot.com
@@ -39,7 +41,7 @@ definitions:
         title: Fcrdns Hosts
         type: array
       ip_list:
-        description: A whitelist of IPs that the bot may use.
+        description: A whitelist of IPs that the bot may use. Items must be unique.
         example:
         - 8.8.8.8
         - 8.8.4.4
@@ -50,6 +52,7 @@ definitions:
         title: Ip List
         type: array
       ip_ranges:
+        description: A list of IP ranges that the bot may use. Items must be unique.
         items:
           $ref: '#/definitions/IPRange'
         title: Ip Ranges
