@@ -1,0 +1,18 @@
+# Additions to uap-core for bots that are missing there, or bots
+# who's user_agent.family is too specific to be practical
+#
+# These will given priority over uap-core in internal user agent parsing
+# See https://github.com/ua-parser/uap-core/blob/master/docs/specification.md
+# for specification details
+#
+# We only need user_agent_parsers with regex and, if desired,
+# family_replacement
+
+user_agent_parsers:
+  # DuckDuckGo (not in uap-core)
+  - regex: DuckDuck(Go|Bot)
+    family_replacement: DuckDuckBot
+
+  # YandexBot (no family_replacement in uap-core)
+  - regex: Yandex\w{1,30}
+    family_replacement: YandexBot

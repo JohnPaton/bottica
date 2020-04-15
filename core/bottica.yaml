@@ -1,0 +1,52 @@
+bots:
+- name: Googlebot
+  # https://support.google.com/webmasters/answer/80553
+  fcrdns_hosts:
+    - google.com
+    - googlebot.com
+
+- name: bingbot
+  # https://blogs.bing.com/webmaster/2012/08/31/how-to-verify-that-bingbot-is-bingbot/
+  fcrdns_hosts:
+    - search.msn.com
+
+- name: BingPreview
+  # https://blogs.bing.com/webmaster/2012/08/31/how-to-verify-that-bingbot-is-bingbot/
+  fcrdns_hosts:
+    - search.msn.com
+
+- name: Pinterestbot
+  # https://help.pinterest.com/en/business/article/pinterest-crawler
+  ip_ranges:
+    - min: 54.236.1.1
+      max: 54.236.1.255
+  fcrdns_hosts:
+    - pinterest.com
+
+- name: baiduspider
+  # https://help.baidu.com/question?prod_id=99&class=0&id=3001
+  fcrdns_hosts:
+    - baidu.com
+    - baidu.jp
+
+- name: DuckDuckBot
+  # https://help.duckduckgo.com/duckduckgo-help-pages/results/duckduckbot/
+  ip_list:
+    - 23.21.227.69
+    - 50.16.241.113
+    - 50.16.241.114
+    - 50.16.241.117
+    - 50.16.247.234
+    - 52.204.97.54
+    - 52.5.190.19
+    - 54.197.234.188
+    - 54.208.100.253
+    - 54.208.102.37
+    - 107.21.1.8
+
+- name: Yandexbot
+  # https://yandex.com/support/webmaster/robot-workings/check-yandex-robots.html
+  fcrdns_hosts:
+    - yandex.ru
+    - yandex.net
+    - yandex.com
