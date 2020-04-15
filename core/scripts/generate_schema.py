@@ -29,7 +29,6 @@ def main(dry_run=False):
         ]
     )
     yaml.dump(schema_dict, stream=stream, Dumper=yaml.SafeDumper, width=80)
-    stream.write("\n")
 
     stream.close()
 
