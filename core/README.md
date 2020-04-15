@@ -1,4 +1,4 @@
-# Bottica Core
+# 🤖 Bottica Core
 
 The `bottica` specification and list of verifiers: [`bottica.yaml`](./bottica.yaml).
 
@@ -10,11 +10,9 @@ We aim for bot names to be in with sync their User-Agent family as parsed
 by the [ua-parser project](https://github.com/ua-parser/uap-core) (UAP)
 to maximize interoperability.
 
-## Verifiers
-* [`fcrdns_hosts`](#fcrdns-hosts): Forward-confirmed reverse DNS.
-* [`ip_list`](#ip-list): Simple IP whitelist
-* [`ip_ranges`](#ip-ranges): Whitelisting of ranges of IPs
-* [`cidr_list`](#cidr-list): Whitelisting of CIDR blocks
+In all entries where an IP is required, `bottica` supports both IPv4 and IPv6.
+
+## ✅ Verifiers
 
 Each entry in `bottica` can have one or more verifiers. For example,
 `Pinterestbot` traffic should be both verified by FCrDNS, _and_ it should
@@ -29,13 +27,27 @@ come from a specific IP range:
     - pinterest.com
 ```
 
-### FCrDNS hosts
+The supported verifiers are:
+* 🔄 [`fcrdns_hosts`](#fcrdns-hosts): Forward-confirmed reverse DNS.
+* 📃 [`ip_list`](#ip-list): Simple IP whitelist
+* 🏔 [`ip_ranges`](#ip-ranges): Whitelisting of ranges of IPs
+* 🍎 [`cidr_list`](#cidr-list): Whitelisting of CIDR blocks
+
+### 🔄 FCrDNS hosts
 
 `fcrdns_hosts` should contain a list of hosts that are allowed to
-participate in a [FCrDNS lookup](https://en.wikipedia.org/wiki/Forward-confirmed_reverse_DNS).
-If the list is empty, then an FCrDNS check will still be performed, but
-all host names will be accepted as long as the IP matches the host's
-reported IP address list.
+participate in a [FCrDNS lookup](https://en.wikipedia.org/wiki/Forward-confirmed_reverse_DNS):
+
+1. A reverse DNS query is performed on an IP to check its reported hostname
+2. A DNS query is performed on the hostname to get its reported list of IPs.
+   The orignal IP should appear in the hosts list of IPs if the reported host
+   name hasn't been spoofed.
+
+If the list `fcrdns_hosts` list is present but empty, an FCrDNS check will
+be performed, with a positive verification as long as the IP matches the
+host's IP list. If there are hosts listed under `fcrdns_hosts`, then the
+verification will additionally only succeed if the last part of the hostname
+matches one of the entries.
 
 **Example**
 ```yaml
@@ -45,7 +57,7 @@ reported IP address list.
     - googlebot.com
 ```
 
-### IP list
+### 📃 IP list
 
 A simple whitelist of allowed IP addresses.
 
@@ -67,7 +79,7 @@ A simple whitelist of allowed IP addresses.
 ```
 
 
-### IP ranges
+### 🏔 IP ranges
 
 A list of IP ranges, one of which must contain the bot's IP. A range is
 specified with the `min` IP and the `max` IP, with both boundaries
@@ -82,12 +94,20 @@ being inclusive.
       max: 54.236.1.255
 ```
 
-### CIDR list
+### 🍎 CIDR list
 
 A list of CIDR blocks, one of which must contain the bot's IP address.
 
+**Example**
 
-## UAP Extras
+```yaml
+- name: MadeUpBot
+  cidr_list:
+    - 8.8.8.0/24
+```
+
+
+## ➕ UAP Extras
 
 Since `ua-parser` is an external dependency, it is sometimes necessary
 to make some additions or tweaks to their parsing, e.g. in cases where
