@@ -49,7 +49,7 @@ class TestBottica:
     )
     def test_verify_calls_right_verifier(self, verifier, mocker):
         b = bottica.Bottica()
-        mock = mocker.patch(f"bottica.verifiers.{verifier}")
+        mock = mocker.patch(f"bottica.verification.{verifier}")
 
         b.verify("1.2.3.4", verifier, [])
 

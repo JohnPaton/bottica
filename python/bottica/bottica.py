@@ -4,7 +4,7 @@ from typing import Union, List, Any
 import yaml
 from ua_parser import user_agent_parser
 
-from bottica.verifiers import fcrdns_hosts, ip_list, ip_ranges, cidr_list
+from bottica.verification import fcrdns_hosts, ip_list, ip_ranges, cidr_list
 
 
 _uap_extras_yaml_path = Path(__file__).parent / "uap_extras.yaml"

@@ -2,7 +2,7 @@ import socket
 
 import pytest
 
-from bottica import verifiers
+from bottica import verification
 
 
 def test_gethostbyaddr_not_found(mocker):
@@ -10,7 +10,7 @@ def test_gethostbyaddr_not_found(mocker):
         raise socket.herror(1, "Not found")
 
     mock = mocker.patch("socket.gethostbyaddr", side_effect=raise_not_found)
-    output = verifiers._gethostbyaddr("1.2.3.4", max_tries=10)
+    output = verification._gethostbyaddr("1.2.3.4", max_tries=10)
 
     assert mock.called_once()  # no retries
     assert output == (None, None, None)
@@ -23,49 +23,49 @@ def test_gethostbyaddr_retries(mocker):
     mock = mocker.patch("socket.gethostbyaddr", side_effect=raise_retry)
 
     with pytest.raises(socket.gaierror):
-        verifiers._gethostbyaddr("1.2.3.4", max_tries=10)
+        verification._gethostbyaddr("1.2.3.4", max_tries=10)
 
     assert mock.call_count == 10
 
 
 def test_fcrdns_hosts_host_not_found(mocker):
-    mocker.patch("bottica.verifiers.get_hostname_by_ip", return_value=None)
-    verified = verifiers.fcrdns_hosts("1.2.3.4")
+    mocker.patch("bottica.verification.get_hostname_by_ip", return_value=None)
+    verified = verification.fcrdns_hosts("1.2.3.4")
     assert not verified
 
 
 def test_fcrdns_hosts_ip_not_found(mocker):
-    mocker.patch("bottica.verifiers.get_hostname_by_ip", return_value="google.com")
-    mocker.patch("bottica.verifiers.get_ips_by_hostname", return_value=None)
-    verified = verifiers.fcrdns_hosts("1.2.3.4")
+    mocker.patch("bottica.verification.get_hostname_by_ip", return_value="google.com")
+    mocker.patch("bottica.verification.get_ips_by_hostname", return_value=None)
+    verified = verification.fcrdns_hosts("1.2.3.4")
     assert not verified
 
 
 def test_fcrdns_ip_not_match(mocker):
-    mocker.patch("bottica.verifiers.get_hostname_by_ip", return_value="google.com")
-    mocker.patch("bottica.verifiers.get_ips_by_hostname", return_value=["2.3.4.5"])
-    verified = verifiers.fcrdns_hosts("1.2.3.4")
+    mocker.patch("bottica.verification.get_hostname_by_ip", return_value="google.com")
+    mocker.patch("bottica.verification.get_ips_by_hostname", return_value=["2.3.4.5"])
+    verified = verification.fcrdns_hosts("1.2.3.4")
     assert not verified
 
 
 def test_fcrdns_host_not_in_list(mocker):
-    mocker.patch("bottica.verifiers.get_hostname_by_ip", return_value="google.com")
-    mocker.patch("bottica.verifiers.get_ips_by_hostname", return_value="1.2.3.4")
-    verified = verifiers.fcrdns_hosts("1.2.3.4", allowed_hosts=["bing.com"])
+    mocker.patch("bottica.verification.get_hostname_by_ip", return_value="google.com")
+    mocker.patch("bottica.verification.get_ips_by_hostname", return_value="1.2.3.4")
+    verified = verification.fcrdns_hosts("1.2.3.4", allowed_hosts=["bing.com"])
     assert not verified
 
 
 def test_fcrdns_host_in_list(mocker):
-    mocker.patch("bottica.verifiers.get_hostname_by_ip", return_value="google.com")
-    mocker.patch("bottica.verifiers.get_ips_by_hostname", return_value="1.2.3.4")
-    verified = verifiers.fcrdns_hosts("1.2.3.4", allowed_hosts=["google.com"])
+    mocker.patch("bottica.verification.get_hostname_by_ip", return_value="google.com")
+    mocker.patch("bottica.verification.get_ips_by_hostname", return_value="1.2.3.4")
+    verified = verification.fcrdns_hosts("1.2.3.4", allowed_hosts=["google.com"])
     assert verified
 
 
 def test_fcrdns_any_host(mocker):
-    mocker.patch("bottica.verifiers.get_hostname_by_ip", return_value="google.com")
-    mocker.patch("bottica.verifiers.get_ips_by_hostname", return_value="1.2.3.4")
-    verified = verifiers.fcrdns_hosts("1.2.3.4")
+    mocker.patch("bottica.verification.get_hostname_by_ip", return_value="google.com")
+    mocker.patch("bottica.verification.get_ips_by_hostname", return_value="1.2.3.4")
+    verified = verification.fcrdns_hosts("1.2.3.4")
     assert verified
 
 
@@ -77,7 +77,7 @@ def test_fcrdns_any_host(mocker):
     ],
 )
 def test_ip_list(ip, ip_list, verified):
-    assert verifiers.ip_list(ip, ip_list) == verified
+    assert verification.ip_list(ip, ip_list) == verified
 
 
 @pytest.mark.parametrize(
@@ -89,7 +89,7 @@ def test_ip_list(ip, ip_list, verified):
     ],
 )
 def test_ip_ranges(ip, ip_ranges, verified):
-    assert verifiers.ip_ranges(ip, ip_ranges) == verified
+    assert verification.ip_ranges(ip, ip_ranges) == verified
 
 
 @pytest.mark.parametrize(
@@ -100,4 +100,4 @@ def test_ip_ranges(ip, ip_ranges, verified):
     ],
 )
 def test_cidr_list(ip, allowed_cidrs, verified):
-    assert verifiers.cidr_list(ip, allowed_cidrs) == verified
+    assert verification.cidr_list(ip, allowed_cidrs) == verified
