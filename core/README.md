@@ -28,10 +28,10 @@ come from a specific IP range:
 ```
 
 The supported verifiers are:
-* 🔄 [`fcrdns_hosts`](#fcrdns-hosts): Forward-confirmed reverse DNS.
-* 📃 [`ip_list`](#ip-list): Simple IP whitelist
-* 🏔 [`ip_ranges`](#ip-ranges): Whitelisting of ranges of IPs
-* 🍎 [`cidr_list`](#cidr-list): Whitelisting of CIDR blocks
+* 🔄 [`fcrdns_hosts`](#-fcrdns-hosts): Forward-confirmed reverse DNS.
+* 📃 [`ip_list`](#-ip-list): Simple IP whitelist
+* 🏔 [`ip_ranges`](#-ip-ranges): Whitelisting of ranges of IPs
+* 🍎 [`cidr_list`](#-cidr-list): Whitelisting of CIDR blocks
 
 ### 🔄 FCrDNS hosts
 
