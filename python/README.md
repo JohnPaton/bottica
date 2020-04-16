@@ -79,7 +79,7 @@ Core, you should also add your own verifier for it.
 ## ➕ Add your own verifiers
 
 By default, Bottica Core supports the biggest bots that provide verification
-([except Facebook](../CONTRIBUTING.md#whoisasn-verifier)). However, the list
+([except Facebook](../CONTRIBUTING.md#-whoisasn-verifier)). However, the list
 can never be exhaustive. If you want to add custom bots to verify, you can do
 so in two ways:
 

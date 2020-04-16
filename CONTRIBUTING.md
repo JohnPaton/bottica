@@ -1,4 +1,4 @@
-# Contributing to Bottica
+# 🍰 Contributing to Bottica
 
 Bottica would love some help! Here are some contributions that would be
 especially welcome:
@@ -8,7 +8,7 @@ especially welcome:
 * Language implementations
 * Documentation improvements
 
-## More bots
+## More bots 🤖🤖🤖
 
 Have you encountered a friendly bot that offers verification? Add it to
 [bottica-core](./core). New entries in Bottica should match the
@@ -16,7 +16,7 @@ Have you encountered a friendly bot that offers verification? Add it to
 to the bot's verification webpage so that it's easier to keep track of
 any changes.
 
-## WHOIS/ASN verifier
+## 🔎 WHOIS/ASN verifier
 
 [Facebook](https://developers.facebook.com/docs/sharing/webmasters/crawler/)
 provide a dynamic list of CIDRs that their bot traffic could come from.
@@ -24,7 +24,7 @@ It would be great to have an additional verifier that performs this
 check, and then pipes the whitelisted CIDRs into a `cidr_list`
 verification.
 
-## Language implementations
+## 🈳 Language implementations
 
 Currently Bottica is only available as a Python package, but
 in principle any language that can do DNS lookups and read YAML should
@@ -37,6 +37,6 @@ Some interesting options would include:
 * A dockerized verification server for verifying IP/User-Agent pairs
 * A CLI for piping logs into verification lists
 
-## Documentation improvements
+## 📚 Documentation improvements
 
 Docs can _always_ be improved.
