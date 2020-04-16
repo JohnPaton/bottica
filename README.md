@@ -40,7 +40,7 @@ PRs adding implementations in other language would be
 
 Broadly speaking, good bots provide verification in one of two ways:
 * 🔄 Forward-confirmed reverse DNS (FCrDNS)
-* 📃 Publishing white lists of IPs that they use in some form
+* 📃 Publishing whitelists of IPs that they use in some form
 
 ### 🔄 FCrDNS
 
