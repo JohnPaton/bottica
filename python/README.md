@@ -8,7 +8,7 @@ The Python implementation of Bottica.
 ```
 
 `Bottica` provides the methods to verify an IP according to one of the
-verifiers provided in [Bottica Core](../core#-verifiers). You can verify a bot:
+[verifiers](../core#-verifiers) provided in [Bottica Core](../core). You can verify a bot:
 
 * 🏷 [By name](#-verify-a-bot-by-name) (e.g. `Googlebot`)
 * 📰 [By User-Agent](#-verify-a-bot-by-user-agent) (e.g. `Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)`)

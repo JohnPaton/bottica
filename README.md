@@ -26,7 +26,7 @@ methods, providing a unified, language-agnostic specification for bot
 verification. This approach was inspired by the
 [ua-parser](https://github.com/ua-parser/uap-core) project, which is a
 similarly-implemented list of regular expressions for parsing User-Agent
-strings. Bottica [attempts](../core#-uap-extras) to align its bot names with
+strings. Bottica [attempts](./core#-uap-extras) to align its bot names with
 the matching name from ua-parser, so that that project can be used to parse
 UAs, and the extracted information can be used directly to verify the request
 using Bottica.
@@ -53,7 +53,7 @@ A forward-confirmed reverse DNS verification is a two step process:
 
 As an additional check, bot owners will generally also provide a set of host
 names IPs of their bots must resolve to. Bottica Core supports FCrDNS both
-[with and without](../core#-fcrdns-hosts) additional host name verification.
+[with and without](./core#-fcrdns-hosts) additional host name verification.
 
 ### 📃 IP whitelists
 
@@ -62,5 +62,5 @@ many bot owners. It can also be combined with FCrDNS to provide a double
 layer of verification.
 
 Bottica Core supports IP whitelists as list of
-[individual IPs](../core#-ip-list), [IP ranges](../core/#-ip-ranges), and
-[CIDR blocks](../core/#-cidr-list).
+[individual IPs](./core#-ip-list), [IP ranges](./core/#-ip-ranges), and
+[CIDR blocks](./core/#-cidr-list).
