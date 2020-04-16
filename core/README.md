@@ -45,7 +45,7 @@ participate in a [FCrDNS lookup](https://en.wikipedia.org/wiki/Forward-confirmed
 
 If the list `fcrdns_hosts` list is present but empty, an FCrDNS check will
 be performed, with a positive verification as long as the IP matches the
-host's IP list. If there are hosts listed under `fcrdns_hosts`, then the
+host's reported IP list. If there are hosts listed under `fcrdns_hosts`, then the
 verification will additionally only succeed if the last part of the hostname
 matches one of the entries.
 
