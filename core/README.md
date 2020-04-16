@@ -40,7 +40,7 @@ participate in a [FCrDNS lookup](https://en.wikipedia.org/wiki/Forward-confirmed
 
 1. A reverse DNS query is performed on an IP to check its reported hostname
 2. A DNS query is performed on the hostname to get its reported list of IPs.
-   The orignal IP should appear in the hosts list of IPs if the reported host
+   The original IP should appear in the hosts list of IPs if the reported host
    name hasn't been spoofed.
 
 If the list `fcrdns_hosts` list is present but empty, an FCrDNS check will
