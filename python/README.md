@@ -57,6 +57,8 @@ IP against a particular User-Agent directly.
 
 ```pycon
 >>> ua = "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
+>>> btca.parse_ua(ua)
+'Googlebot'
 >>> btca.verify_ua(ip="1.2.3.4", user_agent=ua)
 False
 ```
