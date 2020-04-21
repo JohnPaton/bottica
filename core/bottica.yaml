@@ -50,3 +50,14 @@ bots:
     - yandex.ru
     - yandex.net
     - yandex.com
+
+- name: AhrefsBot
+  # https://ahrefs.com/robot
+  cidr_list:
+    - 54.36.148.0/24
+    - 54.36.149.0/24
+    - 54.36.150.0/24
+    - 195.154.122.0/24
+    - 195.154.123.0/24
+    - 195.154.126.0/24
+    - 195.154.127.0/24
