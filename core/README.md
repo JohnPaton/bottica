@@ -101,9 +101,16 @@ A list of CIDR blocks, one of which must contain the bot's IP address.
 **Example**
 
 ```yaml
-- name: MadeUpBot
+- name: AhrefsBot
+  # https://ahrefs.com/robot
   cidr_list:
-    - 8.8.8.0/24
+    - 54.36.148.0/24
+    - 54.36.149.0/24
+    - 54.36.150.0/24
+    - 195.154.122.0/24
+    - 195.154.123.0/24
+    - 195.154.126.0/24
+    - 195.154.127.0/24
 ```
 
 
