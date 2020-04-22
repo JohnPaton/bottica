@@ -66,3 +66,8 @@ bots:
   # http://webmeup-crawler.com/
   fcrdns_hosts:
     - webmeup.com
+
+- name: Qwantify
+  # https://help.qwant.com/bot
+  fcrdns_hosts:
+    - search.qwant.com
