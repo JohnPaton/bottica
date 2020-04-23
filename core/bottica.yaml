@@ -71,3 +71,8 @@ bots:
   # https://help.qwant.com/bot
   fcrdns_hosts:
     - search.qwant.com
+    
+- name: Bytespider
+  # https://zhanzhang.toutiao.com/page/outer/docs/26881
+  fcrdns_hosts:
+    - bytedance.com
